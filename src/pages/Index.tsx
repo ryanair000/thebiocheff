@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -32,7 +31,6 @@ const Index = () => {
   
   const [generatedBio, setGeneratedBio] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
-  const [apiKey, setApiKey] = useState("");
   const [copied, setCopied] = useState(false);
   const { toast } = useToast();
 
@@ -41,12 +39,13 @@ const Index = () => {
   };
 
   const generateBio = async () => {
-    console.log('Generate bio called with API key:', apiKey ? 'API key present' : 'No API key');
+    const openaiApiKey = import.meta.env.VITE_OPENAI_API_KEY;
+    console.log('Generate bio called with API key:', openaiApiKey ? 'API key present' : 'No API key');
     
-    if (!apiKey) {
+    if (!openaiApiKey) {
       toast({
-        title: "API Key Required",
-        description: "Please enter your OpenAI API key to generate bios.",
+        title: "Configuration Error",
+        description: "OpenAI API key is not configured. Please contact support.",
         variant: "destructive",
       });
       return;
@@ -81,7 +80,7 @@ Return only the bio text, optimized for ${formData.platform}'s style and format.
       const response = await fetch('https://api.openai.com/v1/chat/completions', {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${apiKey}`,
+          'Authorization': `Bearer ${openaiApiKey}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
@@ -176,20 +175,6 @@ Return only the bio text, optimized for ${formData.platform}'s style and format.
               <CardTitle className="text-2xl font-semibold text-gray-800">Tell Us About Yourself</CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
-              {/* API Key Input */}
-              <div className="space-y-2">
-                <Label htmlFor="apiKey">OpenAI API Key</Label>
-                <Input
-                  id="apiKey"
-                  type="password"
-                  placeholder="sk-..."
-                  value={apiKey}
-                  onChange={(e) => setApiKey(e.target.value)}
-                  className="border-gray-200 focus:border-purple-400"
-                />
-                <p className="text-xs text-gray-500">Your API key is stored locally and never shared. Make sure it starts with "sk-"</p>
-              </div>
-
               {/* Platform Selection */}
               <div className="space-y-2">
                 <Label htmlFor="platform">Platform *</Label>

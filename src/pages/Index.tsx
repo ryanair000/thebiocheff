@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -146,9 +145,17 @@ Return only the bio text, optimized for ${formData.platform}'s style and format.
           <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
             AI Bio Generator
           </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-6">
             Create compelling social media bios that perfectly capture your personality and professional essence
           </p>
+          
+          {/* Navigation Links */}
+          <div className="flex justify-center space-x-6 text-sm">
+            <a href="/about" className="text-purple-600 hover:text-purple-800 transition-colors">About</a>
+            <a href="/contact" className="text-purple-600 hover:text-purple-800 transition-colors">Contact</a>
+            <a href="/privacy" className="text-purple-600 hover:text-purple-800 transition-colors">Privacy</a>
+            <a href="/terms" className="text-purple-600 hover:text-purple-800 transition-colors">Terms</a>
+          </div>
         </div>
 
         <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-8">

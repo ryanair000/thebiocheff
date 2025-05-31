@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
 import { Loader2, Sparkles, Copy, Check } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { Link } from "react-router-dom";
 
 const PLATFORM_LIMITS = {
   Instagram: 150,
@@ -16,6 +17,8 @@ const PLATFORM_LIMITS = {
   LinkedIn: 220,
   Facebook: 101,
 };
+
+const MAX_FREE_GENERATIONS = 5;
 
 const Index = () => {
   const [formData, setFormData] = useState({
@@ -33,7 +36,29 @@ const Index = () => {
   const [generatedBio, setGeneratedBio] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [generationCount, setGenerationCount] = useState(() => {
+    const savedCount = localStorage.getItem('bioGenerations');
+    return savedCount ? parseInt(savedCount, 10) : 0;
+  });
   const { toast } = useToast();
+
+  const checkAndIncrementGenerationCount = () => {
+    if (generationCount >= MAX_FREE_GENERATIONS) {
+      toast({
+        title: "Generation Limit Reached",
+        description: (
+          <p>You have reached your free generation limit. Please <Link to="/signup" className="font-medium text-purple-600 hover:text-purple-800">sign up</Link> to continue.</p>
+        ),
+        variant: "destructive",
+        duration: 5000,
+      });
+      return false;
+    }
+    const newCount = generationCount + 1;
+    setGenerationCount(newCount);
+    localStorage.setItem('bioGenerations', newCount.toString());
+    return true;
+  };
 
   const handleInputChange = (field: string, value: string | boolean) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -58,6 +83,10 @@ const Index = () => {
         description: "Please fill in at least platform, name, and profession.",
         variant: "destructive",
       });
+      return;
+    }
+
+    if (!checkAndIncrementGenerationCount()) {
       return;
     }
 
@@ -145,6 +174,8 @@ Return only the bio text, optimized for ${formData.platform}'s style and format.
   const getCharacterCount = () => generatedBio.length;
   const getCharacterLimit = () => formData.platform ? PLATFORM_LIMITS[formData.platform as keyof typeof PLATFORM_LIMITS] : 0;
   const isOverLimit = () => getCharacterCount() > getCharacterLimit();
+
+  const isGenerationLimitReached = generationCount >= MAX_FREE_GENERATIONS;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-50">
@@ -293,23 +324,35 @@ Return only the bio text, optimized for ${formData.platform}'s style and format.
                 </div>
               </div>
 
-              <Button 
-                onClick={generateBio} 
-                disabled={isGenerating}
-                className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold py-3 rounded-lg transition-all duration-200"
-              >
-                {isGenerating ? (
-                  <>
-                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                    Generating...
-                  </>
-                ) : (
-                  <>
-                    <Sparkles className="w-4 h-4 mr-2" />
-                    Generate Bio
-                  </>
-                )}
-              </Button>
+              {isGenerationLimitReached ? (
+                <div className="text-center p-4 bg-red-100 border border-red-200 text-red-700 rounded-md space-y-2">
+                  <p className="font-semibold">Free Generation Limit Reached!</p>
+                  <p className="text-sm">Please sign up to continue generating unlimited bios.</p>
+                  <Link to="/signup">
+                    <Button className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 rounded-lg transition-all duration-200">
+                      Sign Up for Unlimited Bios
+                    </Button>
+                  </Link>
+                </div>
+              ) : (
+                <Button 
+                  onClick={generateBio} 
+                  disabled={isGenerating}
+                  className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold py-3 rounded-lg transition-all duration-200"
+                >
+                  {isGenerating ? (
+                    <>
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      Generating...
+                    </>
+                  ) : (
+                    <>
+                      <Sparkles className="w-4 h-4 mr-2" />
+                      Generate Bio ({generationCount}/{MAX_FREE_GENERATIONS} free)
+                    </>
+                  )}
+                </Button>
+              )}
             </CardContent>
           </Card>
 

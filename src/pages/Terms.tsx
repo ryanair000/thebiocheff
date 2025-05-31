@@ -84,7 +84,7 @@ const Terms = () => {
               <section>
                 <h2 className="text-xl font-semibold text-gray-800 mb-3">Contact Information</h2>
                 <p className="text-gray-600">
-                  For questions about these Terms of Service, please contact us through our Contact page.
+                  For questions about these Terms of Service, please contact us through our Socials page.
                 </p>
               </section>
             </CardContent>

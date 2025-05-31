@@ -71,7 +71,7 @@ const Privacy = () => {
               <section>
                 <h2 className="text-xl font-semibold text-gray-800 mb-3">Contact Us</h2>
                 <p className="text-gray-600">
-                  If you have any questions about this Privacy Policy, please contact us through our Contact page.
+                  If you have any questions about this Privacy Policy, please contact us through our Socials page.
                 </p>
               </section>
             </CardContent>

@@ -162,7 +162,7 @@ Return only the bio text, optimized for ${formData.platform}'s style and format.
           {/* Navigation Links */}
           <div className="flex justify-center space-x-6 text-sm">
             <a href="/about" className="text-purple-600 hover:text-purple-800 transition-colors">About</a>
-            <a href="/contact" className="text-purple-600 hover:text-purple-800 transition-colors">Contact</a>
+            <a href="/socials" className="text-purple-600 hover:text-purple-800 transition-colors">Socials</a>
             <a href="/privacy" className="text-purple-600 hover:text-purple-800 transition-colors">Privacy</a>
             <a href="/terms" className="text-purple-600 hover:text-purple-800 transition-colors">Terms</a>
           </div>

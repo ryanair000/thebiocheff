@@ -40,6 +40,16 @@ const Footer = () => {
                   Socials
                 </Link>
               </li>
+              <li>
+                <Link to="/login" className="text-gray-600 hover:text-purple-600 transition-colors">
+                  Login
+                </Link>
+              </li>
+              <li>
+                <Link to="/signup" className="text-gray-600 hover:text-purple-600 transition-colors">
+                  Sign Up
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -47,11 +57,6 @@ const Footer = () => {
           <div>
             <h3 className="font-semibold text-gray-800 mb-4">Legal</h3>
             <ul className="space-y-2 text-sm">
-              <li>
-                <Link to="/pricing" className="text-gray-600 hover:text-purple-600 transition-colors">
-                  Pricing
-                </Link>
-              </li>
             </ul>
           </div>
         </div>

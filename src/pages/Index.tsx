@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -40,6 +41,8 @@ const Index = () => {
   };
 
   const generateBio = async () => {
+    console.log('Generate bio called with API key:', apiKey ? 'API key present' : 'No API key');
+    
     if (!apiKey) {
       toast({
         title: "API Key Required",
@@ -73,6 +76,8 @@ Include Hashtags: ${formData.includeHashtags ? "Yes" : "No"}
 
 Return only the bio text, optimized for ${formData.platform}'s style and format.`;
 
+      console.log('Making API request to OpenAI...');
+
       const response = await fetch('https://api.openai.com/v1/chat/completions', {
         method: 'POST',
         headers: {
@@ -96,11 +101,17 @@ Return only the bio text, optimized for ${formData.platform}'s style and format.
         }),
       });
 
+      console.log('API response status:', response.status);
+
       if (!response.ok) {
-        throw new Error('Failed to generate bio');
+        const errorData = await response.json().catch(() => ({ error: { message: 'Unknown error' } }));
+        console.error('API Error:', errorData);
+        throw new Error(errorData.error?.message || `API request failed with status ${response.status}`);
       }
 
       const data = await response.json();
+      console.log('API response data:', data);
+      
       const bio = data.choices[0].message.content.trim();
       setGeneratedBio(bio);
       
@@ -112,7 +123,7 @@ Return only the bio text, optimized for ${formData.platform}'s style and format.
       console.error('Error generating bio:', error);
       toast({
         title: "Generation Failed",
-        description: "Failed to generate bio. Please check your API key and try again.",
+        description: error instanceof Error ? error.message : "Failed to generate bio. Please check your API key and try again.",
         variant: "destructive",
       });
     } finally {
@@ -176,7 +187,7 @@ Return only the bio text, optimized for ${formData.platform}'s style and format.
                   onChange={(e) => setApiKey(e.target.value)}
                   className="border-gray-200 focus:border-purple-400"
                 />
-                <p className="text-xs text-gray-500">Your API key is stored locally and never shared</p>
+                <p className="text-xs text-gray-500">Your API key is stored locally and never shared. Make sure it starts with "sk-"</p>
               </div>
 
               {/* Platform Selection */}

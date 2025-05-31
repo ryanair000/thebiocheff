@@ -153,7 +153,7 @@ Return only the bio text, optimized for ${formData.platform}'s style and format.
             <Sparkles className="w-8 h-8 text-white" />
           </div>
           <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
-            AI Bio Generator
+            The Bio Chef
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-6">
             Create compelling social media bios that perfectly capture your personality and professional essence
@@ -348,7 +348,7 @@ Return only the bio text, optimized for ${formData.platform}'s style and format.
 
         {/* Footer */}
         <div className="text-center mt-12 text-gray-500">
-          <p>Powered by OpenAI GPT-3.5 Turbo</p>
+          <p>© {new Date().getFullYear()} The Bio Chef. Powered by OpenAI GPT-3.5 Turbo.</p>
         </div>
       </div>
     </div>

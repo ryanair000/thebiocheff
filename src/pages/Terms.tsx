@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { FileText, ArrowLeft } from "lucide-react";
@@ -27,14 +26,14 @@ const Terms = () => {
               <section>
                 <h2 className="text-xl font-semibold text-gray-800 mb-3">Acceptance of Terms</h2>
                 <p className="text-gray-600">
-                  By accessing and using the AI Bio Generator service, you accept and agree to be bound by the terms and provision of this agreement.
+                  By accessing and using The Bio Chef service, you accept and agree to be bound by the terms and provision of this agreement.
                 </p>
               </section>
 
               <section>
                 <h2 className="text-xl font-semibold text-gray-800 mb-3">Service Description</h2>
                 <p className="text-gray-600 mb-3">
-                  AI Bio Generator is a web-based service that helps users create personalized social media bios using artificial intelligence. The service includes:
+                  The Bio Chef is a web-based service that helps users create personalized social media bios using artificial intelligence. The service includes:
                 </p>
                 <ul className="list-disc list-inside space-y-2 text-gray-600">
                   <li>AI-powered bio generation for multiple social media platforms</li>

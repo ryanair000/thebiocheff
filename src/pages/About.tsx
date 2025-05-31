@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Sparkles, Users, Shield, Zap } from "lucide-react";
@@ -14,7 +13,7 @@ const About = () => {
             <Sparkles className="w-8 h-8 text-white" />
           </div>
           <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
-            About AI Bio Generator
+            About The Bio Chef
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Helping you create the perfect social media presence with AI-powered bio generation
@@ -29,7 +28,7 @@ const About = () => {
             </CardHeader>
             <CardContent>
               <p className="text-gray-600 leading-relaxed">
-                We believe that everyone deserves a compelling social media presence. Our AI Bio Generator 
+                We believe that everyone deserves a compelling social media presence. Our The Bio Chef 
                 helps you craft personalized, engaging bios that perfectly capture your personality and 
                 professional essence across all major social media platforms.
               </p>
@@ -37,7 +36,7 @@ const About = () => {
           </Card>
 
           {/* Features Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
             <Card className="shadow-lg border-0 bg-white/80 backdrop-blur-sm">
               <CardContent className="p-6 text-center">
                 <div className="inline-flex items-center justify-center w-12 h-12 bg-purple-100 rounded-full mb-4">
@@ -80,7 +79,7 @@ const About = () => {
             <CardHeader>
               <CardTitle className="text-2xl font-semibold text-gray-800">How It Works</CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="p-6">
               <div className="space-y-4">
                 <div className="flex items-start space-x-4">
                   <div className="flex-shrink-0 w-8 h-8 bg-purple-600 text-white rounded-full flex items-center justify-center text-sm font-semibold">
@@ -114,7 +113,7 @@ const About = () => {
           </Card>
 
           {/* CTA */}
-          <div className="text-center">
+          <div className="text-center mt-8">
             <Link to="/">
               <Button className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold py-3 px-8 rounded-lg transition-all duration-200">
                 <Sparkles className="w-4 h-4 mr-2" />

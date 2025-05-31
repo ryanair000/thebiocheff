@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Shield, ArrowLeft } from "lucide-react";
@@ -27,7 +26,7 @@ const Privacy = () => {
               <section>
                 <h2 className="text-xl font-semibold text-gray-800 mb-3">Information We Collect</h2>
                 <p className="text-gray-600 mb-3">
-                  Our AI Bio Generator is designed with privacy in mind. We collect minimal information to provide our service:
+                  Our The Bio Chef is designed with privacy in mind. We collect minimal information to provide our service:
                 </p>
                 <ul className="list-disc list-inside space-y-2 text-gray-600">
                   <li>Personal information you voluntarily provide (name, profession, hobbies, goals)</li>

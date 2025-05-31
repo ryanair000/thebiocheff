@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { Sparkles } from "lucide-react";
 
@@ -14,7 +13,7 @@ const Footer = () => {
                 <Sparkles className="w-4 h-4 text-white" />
               </div>
               <span className="text-xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                AI Bio Generator
+                The Bio Chef
               </span>
             </div>
             <p className="text-gray-600 text-sm max-w-md">
@@ -65,7 +64,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-gray-200 mt-8 pt-8 text-center">
           <p className="text-gray-500 text-sm">
-            © {new Date().getFullYear()} AI Bio Generator. Powered by OpenAI GPT-3.5 Turbo.
+            © {new Date().getFullYear()} The Bio Chef. Powered by OpenAI GPT-3.5 Turbo.
           </p>
         </div>
       </div>

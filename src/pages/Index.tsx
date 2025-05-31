@@ -25,6 +25,7 @@ const Index = () => {
     hobbies: "",
     goals: "",
     tone: "",
+    bioLength: "average",
     includeEmojis: false,
     includeHashtags: false,
   });
@@ -70,6 +71,7 @@ Profession/Role: ${formData.profession}
 Hobbies/Interests: ${formData.hobbies || "Not specified"}
 Goals/Personality: ${formData.goals || "Not specified"}
 Tone: ${formData.tone || "friendly"}
+Length: ${formData.bioLength || "average"}
 Include Emojis: ${formData.includeEmojis ? "Yes" : "No"}
 Include Hashtags: ${formData.includeHashtags ? "Yes" : "No"}
 
@@ -252,6 +254,21 @@ Return only the bio text, optimized for ${formData.platform}'s style and format.
                     <SelectItem value="inspirational">Inspirational</SelectItem>
                     <SelectItem value="casual">Casual</SelectItem>
                     <SelectItem value="confident">Confident</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Bio Length Selection */}
+              <div className="space-y-2">
+                <Label htmlFor="bioLength">Bio Length (Optional)</Label>
+                <Select value={formData.bioLength} onValueChange={(value) => handleInputChange('bioLength', value)}>
+                  <SelectTrigger className="border-gray-200 focus:border-purple-400">
+                    <SelectValue placeholder="Choose length (default: Average)" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="short">Short</SelectItem>
+                    <SelectItem value="average">Average</SelectItem>
+                    <SelectItem value="long">Long</SelectItem>
                   </SelectContent>
                 </Select>
               </div>

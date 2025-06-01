@@ -93,6 +93,24 @@ const Index = () => {
     setIsGenerating(true);
     
     try {
+      const platformLimit = PLATFORM_LIMITS[formData.platform as keyof typeof PLATFORM_LIMITS];
+      let desiredMaxTokens = platformLimit;
+
+      switch (formData.bioLength) {
+        case "short":
+          desiredMaxTokens = Math.floor(platformLimit * 0.5); // 50% of limit for short
+          break;
+        case "average":
+          desiredMaxTokens = Math.floor(platformLimit * 0.8); // 80% of limit for average
+          break;
+        case "long":
+          desiredMaxTokens = platformLimit; // 100% of limit for long
+          break;
+      }
+
+      // Ensure max_tokens is at least 10 to avoid too short responses
+      const finalMaxTokens = Math.max(10, desiredMaxTokens);
+
       const prompt = `Create a concise, engaging, and personalized bio in English for ${formData.platform} (character limit: ${PLATFORM_LIMITS[formData.platform as keyof typeof PLATFORM_LIMITS]}) based on:
       
 Name: ${formData.name}
@@ -104,7 +122,7 @@ Length: ${formData.bioLength || "average"}
 Include Emojis: ${formData.includeEmojis ? "Yes" : "No"}
 Include Hashtags: ${formData.includeHashtags ? "Yes" : "No"}
 
-Return only the bio text, optimized for ${formData.platform}'s style and format.`;
+Return only the bio text, optimized for ${formData.platform}'s style and format. Ensure the length respects the character limits.`;
 
       console.log('Making API request to OpenAI...');
 
@@ -126,7 +144,7 @@ Return only the bio text, optimized for ${formData.platform}'s style and format.
               content: prompt
             }
           ],
-          max_tokens: 150,
+          max_tokens: finalMaxTokens, // Use dynamically calculated max_tokens
           temperature: 0.7,
         }),
       });

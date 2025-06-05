@@ -17,7 +17,7 @@ const SignUp = () => {
           <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
             Create Your Account
           </h1>
-          <p className="text-gray-600">Join The Bio Chef today!</p>
+          <p className="text-gray-600">Join The Bio Chef today and enjoy a 1-month free trial! After your trial, the product is completely free for members.</p>
         </div>
 
         <Card className="shadow-lg border-0 bg-white/80 backdrop-blur-sm">

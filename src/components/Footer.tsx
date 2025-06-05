@@ -31,6 +31,11 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
+                <a href="https://biochef.netlify.app/" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-purple-600 transition-colors">
+                  Product
+                </a>
+              </li>
+              <li>
                 <Link to="/about" className="text-gray-600 hover:text-purple-600 transition-colors">
                   About
                 </Link>
